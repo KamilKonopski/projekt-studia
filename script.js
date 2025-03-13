@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const popupName = document.getElementById("popup-name");
   const popupImage = document.getElementById("popup-image");
   const popupCloseBtn = document.getElementById("popup-close");
+  const header = document.querySelector(".header");
 
   const burgerMenu = document.querySelector(".burger-menu");
   const navigation = document.querySelector(".header__menu");
@@ -98,12 +99,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (targetSection) {
         window.scrollTo({
-          top: targetSection.offsetTop - 20,
+          top: targetSection.offsetTop - header.offsetHeight,
           behavior: "smooth",
         });
       }
     });
     //Czas zakończenia 01:10
+  });
+
+  window.addEventListener("scroll", function () {
+    const sections = document.querySelectorAll("section");
+
+    let currentSection = "";
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (
+        rect.top - header.offsetHeight - 10 <= 0 &&
+        rect.bottom - header.offsetHeight - 10 >= 0
+      ) {
+        currentSection = section.classList[1];
+      }
+    });
+
+    document
+      .querySelectorAll(".header__menu-item")
+      .forEach((link) => link.classList.remove("active"));
+
+    const activeItem = document.getElementById(`${currentSection}`);
+    if (activeItem) {
+      activeItem.parentElement.classList.add("active");
+    }
   });
 
   burgerMenu.addEventListener("click", function () {
