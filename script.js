@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const popupImage = document.getElementById("popup-image");
   const popupCloseBtn = document.getElementById("popup-close");
   const header = document.querySelector(".header");
-
   const burgerMenu = document.querySelector(".burger-menu");
   const navigation = document.querySelector(".header__menu");
+  // const overlayMenu = document.querySelector(".overlay-menu");
 
   let pageNumber = 1;
   let pageSize = 20;
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (
       window.innerHeight + this.window.scrollY >=
-      document.body.offsetHeight - 50
+      document.body.offsetHeight
     ) {
       fetchProducts();
     }
@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     popup.style.display = "flex";
     overlay.style.display = "block";
+    document.documentElement.style.overflow = "hidden";
 
     popupCloseBtn.addEventListener("click", function () {
       popup.style.display = "none";
@@ -89,11 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (event) {
       event.preventDefault();
 
-      document
-        .querySelectorAll(".header__menu-item")
-        .forEach((link) => link.classList.remove("active"));
-      this.parentElement.classList.add("active");
-
       const targetClass = this.id;
       const targetSection = document.querySelector(`.${targetClass}`);
 
@@ -103,6 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
           behavior: "smooth",
         });
       }
+
+      navigation.classList.remove("active");
+      overlay.style.display = "none";
+      document.documentElement.style.overflow = "auto";
     });
     //Czas zakończenia 01:10
   });
@@ -134,5 +134,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   burgerMenu.addEventListener("click", function () {
     navigation.classList.toggle("active");
+    if (navigation.classList.contains("active")) {
+      overlay.style.display = "block";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      overlay.style.display = "none";
+      document.documentElement.style.overflow = "auto";
+    }
+  });
+
+  overlay.addEventListener("click", function () {
+    navigation.classList.remove("active");
+    overlay.style.display = "none";
+    document.documentElement.style.overflow = "auto";
+    popup.style.display = "none";
   });
 });

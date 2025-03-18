@@ -14,16 +14,16 @@
 
 html {
   overflow-x: hidden;
-  max-width: 1920px;
   font-family: "Futura PT", Arial, Helvetica, sans-serif;
 }
 
 body {
   background-color: var(--color-bg);
-  width: 100%;
   color: var(--color-text);
   overflow-x: hidden;
   position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 /* /////HEADER///// */
@@ -31,11 +31,13 @@ body {
 .header {
   display: flex;
   width: 100%;
+  max-width: 1920px;
   height: 122px;
   box-shadow: 0 4px 4px 0 #00000040;
   background-color: #fff;
   position: fixed;
   z-index: 10000;
+  margin: 0 auto;
 }
 
 .header__logo {
@@ -61,6 +63,8 @@ body {
   width: 30px;
   height: 25px;
   cursor: pointer;
+  z-index: 1000;
+  position: relative;
 }
 
 .menu-bar {
@@ -82,6 +86,17 @@ body {
 
 .header__menu-item.active {
   border-bottom: 1px solid var(--color-text);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  display: none;
 }
 
 .header__link {
@@ -335,6 +350,7 @@ body {
 .composition > h3 {
   font-size: 31px;
   font-weight: 400;
+  padding: 0 10px;
 }
 
 .composition__heading {
@@ -367,6 +383,20 @@ body {
   width: 600px;
   height: 1238px;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.composition__image::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/vector-green.svg");
+  background-repeat: no-repeat;
+  background-position: 99% 32%;
+  background-size: 200px;
+  z-index: -1;
 }
 
 .composition__image > button {
@@ -377,6 +407,7 @@ body {
   padding: 10px 40px;
   border: none;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .composition__image > img {
@@ -426,14 +457,40 @@ body {
 }
 
 .buldog {
-  width: 945px;
-  height: 496px;
+  position: relative;
+  padding-bottom: 640px;
+  background-image: url("./assets/piesek.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: bottom center;
+  background-attachment: fixed;
+  overflow: hidden;
 }
-
-.buldog > img {
+.buldog::before {
+  content: "";
+  position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-image: url("./assets/vector-green.svg");
+  background-repeat: no-repeat;
+  background-position: 32% 119%;
+  background-size: 200px;
+  z-index: -1;
+  background-attachment: fixed;
+  pointer-events: none;
+}
+.buldog::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/vector-green.svg");
+  background-repeat: no-repeat;
+  background-position: 68% 106%;
+  background-size: 200px;
+  z-index: -1;
+  background-attachment: fixed;
+  pointer-events: none;
 }
 
 /* /////COMPOSITION SECTION///// */
@@ -535,17 +592,6 @@ body {
   object-fit: cover;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-}
-
 @media (max-width: 1650px) {
   .hero__product {
     width: 573px;
@@ -628,6 +674,15 @@ body {
     align-items: center;
     margin: 0 50px;
   }
+  .buldog {
+    background-size: 70%;
+  }
+  .buldog::before {
+    background-position: 20% 130%;
+  }
+  .buldog::after {
+    background-position: 85% 120%;
+  }
 }
 
 /* Tablety */
@@ -658,6 +713,10 @@ body {
   .composition__image {
     width: 90%;
     height: auto;
+  }
+  .composition__image::before {
+    background-position: 62% 38%;
+    background-size: 100px;
   }
   .products__list {
     gap: 20px;
@@ -717,6 +776,7 @@ body {
   }
   .hero__description > p {
     font-size: 16px;
+    padding: 0 10px;
   }
   .hero__description > button {
     font-size: 16px;
@@ -744,14 +804,23 @@ body {
     padding: 0 80px;
   }
   .buldog {
-    width: 100%;
-    height: auto;
+    background-size: 90%;
+  }
+  .buldog::before {
+    background-position: 7% 130%;
+  }
+  .buldog::after {
+    background-position: 100% 125%;
   }
   .products__number {
     width: 90%;
   }
+  .products__list {
+    margin: 0 60px;
+  }
   .products__item {
-    width: 100%;
+    width: 45%;
+    height: auto;
     padding: 15px;
   }
   .popup {
