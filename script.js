@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector(".header");
   const burgerMenu = document.querySelector(".burger-menu");
   const navigation = document.querySelector(".header__menu");
-  // const overlayMenu = document.querySelector(".overlay-menu");
 
   let pageNumber = 1;
   let pageSize = 20;
@@ -81,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     popupCloseBtn.addEventListener("click", function () {
       popup.style.display = "none";
       overlay.style.display = "none";
+      document.documentElement.style.overflow = "auto";
       //Czas zakończenia 14:10
     });
   }
