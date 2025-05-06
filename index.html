@@ -14,11 +14,72 @@
   </head>
   <body>
     <header class="hero">
-      <h1 class="hero__heading" aria-live="polite">
-        Cześć, jestem <span id="typing-words" role="text">Kamil</span
-        ><span class="cursor" aria-hidden="true">|</span>
-      </h1>
+      <nav class="hero__nav">
+        <div class="hero__logo">
+          <a href="index.html">kamilkonopski.dev</a>
+        </div>
+        <ul class="hero__navigation">
+          <li class="hero__item"><a href="#">O mnie</a></li>
+          <li class="hero__item"><a href="#">Projekty</a></li>
+          <li class="hero__item"><a href="#">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="hero__welcome">
+        <div class="hero__welcome-heading">
+          <h1 class="hero__heading" aria-live="polite">
+            Cześć, jestem <span id="typing-words" role="text">Kamil</span
+            ><span class="cursor" aria-hidden="true">|</span>
+          </h1>
+          <div class="hero__welcome-info">
+            <p>
+              Pasjonat tworzenia intuicyjnych, nowoczesnych aplikacji
+              internetowych.
+            </p>
+            <a href="#">skontaktuj się</a>
+          </div>
+        </div>
+        <div class="hero__slider">
+          <div class="hero__slider-card" id="slider-current">
+            <img src="./img/img1.jpg" alt="portfolio" />
+          </div>
+          <div class="hero__slider-card" id="slider-next">
+            <img src="./img/img2.jpg" alt="portfolio" />
+          </div>
+        </div>
+      </div>
+      <div class="hero__pillars-container">
+        <ul class="hero__pillars-items">
+          <li class="hero__pillars-item">
+            <span class="hero__pillars-number">1</span>
+            <div class="hero__pillars-text">
+              <h2>Interfejsy</h2>
+              <p>Jak najbardziej przyjazne dla użytkownika</p>
+            </div>
+          </li>
+          <li class="hero__pillars-item">
+            <span class="hero__pillars-number">2</span>
+            <div class="hero__pillars-text">
+              <h2>Strony internetowe</h2>
+              <p>Łatwe w obsłudze i łatwe do przeglądania</p>
+            </div>
+          </li>
+          <li class="hero__pillars-item">
+            <span class="hero__pillars-number">3</span>
+            <div class="hero__pillars-text">
+              <h2>Wizualizacje</h2>
+              <p>Przejrzystość i transparentność</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </header>
+    <div id="bot-container" class="bot">
+      <div class="bot-avatar">🤖</div>
+      <div class="bot-bubble">
+        <p id="bot-joke">...</p>
+        <button id="bot-close">X</button>
+      </div>
+    </div>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>
